@@ -48,3 +48,11 @@ export default tseslint.config({
   },
 })
 ```
+
+# Technologies
+- react + Vite + TS for frontend
+- node.js for backend
+- axios for api requests
+- react router for navigation
+- Tailwind and materialUI for CSS 
+- 
