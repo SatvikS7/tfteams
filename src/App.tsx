@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SearchBar from './components/SearchBar';
 import PlayerProfile from './components/PlayerProfile';
+import { fetchSummonerData, fetchRankedStats } from './api/riotApi';
 
 interface ProfileData {
   name: string;
@@ -13,14 +14,29 @@ const App: React.FC = () => {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
 
   const handleSearch = async (summonerName: string) => {
-    // Fetch data from RIOT API here
-    const dummyData: ProfileData = {
-      name: summonerName,
-      rank: 'Diamond IV',
-      wins: 150,
-      losses: 100,
-    };
-    setProfileData(dummyData);
+    try {
+      // Fetch summoner data
+      const summoner = await fetchSummonerData(summonerName);
+
+      // Fetch ranked stats
+      const rankedStats = await fetchRankedStats(summoner.id);
+
+      // Filter for TFT ranked stats
+      const tftStats = rankedStats.find((entry) => entry.queueType === 'RANKED_TFT');
+
+      if (tftStats) {
+        setProfileData({
+          name: summoner.name,
+          rank: `${tftStats.tier} ${tftStats.rank}`,
+          wins: tftStats.wins,
+          losses: tftStats.losses,
+        });
+      } else {
+        alert('No TFT ranked stats found for this player.');
+      }
+    } catch (error) {
+      alert('Error fetching player data. Please try again.');
+    }
   };
 
   return (
