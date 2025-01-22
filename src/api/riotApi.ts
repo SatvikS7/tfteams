@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API_KEY = import.meta.env.VITE_RIOT_API_KEY;
-const BASE_URL = 'https://na1.api.riotgames.com/tft'; // Replace <region> with your chosen region (e.g., na1, euw1, etc.)
+const RIOT_API_KEY = import.meta.env.VITE_RIOT_API_KEY;
+const BASE_URL = 'https://americas.api.riotgames.com/riot'; // Replace <region> with your chosen region (e.g., na1, euw1, etc.)
 
 interface SummonerData {
   id: string;
@@ -24,8 +24,7 @@ interface RankedStats {
 export const fetchSummonerData = async (summonerName: string): Promise<SummonerData> => {
   try {
     const response = await axios.get<SummonerData>(
-      `${BASE_URL}/summoner/v1/summoners/by-name/${summonerName}`,
-      { headers: { 'X-Riot-Token': API_KEY } }
+      `${BASE_URL}/account/v1/accounts/by-riot-id/${summonerName}/NA1?api_key=${RIOT_API_KEY}`
     );
     return response.data;
   } catch (error) {
@@ -38,7 +37,7 @@ export const fetchRankedStats = async (summonerId: string): Promise<RankedStats[
   try {
     const response = await axios.get<RankedStats[]>(
       `${BASE_URL}/league/v1/entries/by-summoner/${summonerId}`,
-      { headers: { 'X-Riot-Token': API_KEY } }
+      { headers: { 'X-Riot-Token': RIOT_API_KEY } }
     );
     return response.data;
   } catch (error) {
