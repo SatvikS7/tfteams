@@ -20,7 +20,7 @@ interface RankedStats {
   losses: number;
   queueType: string;
 }
-
+/*
 export const fetchSummonerData = async (summonerName: string): Promise<SummonerData> => {
   try {
     const response = await axios.get<SummonerData>(
@@ -29,6 +29,19 @@ export const fetchSummonerData = async (summonerName: string): Promise<SummonerD
     return response.data;
   } catch (error) {
     console.error('Error fetching summoner data:', error);
+    throw error;
+  }
+};*/
+
+export const fetchSummonerData = async (summonerName: string) => {
+  try {
+    const response = await fetch(`http://localhost:5000/api/summoner/${summonerName}`);
+    if (!response.ok) {
+      throw new Error(`API Error: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to fetch summoner data:', error);
     throw error;
   }
 };

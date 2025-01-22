@@ -19,21 +19,24 @@ const App: React.FC = () => {
       const summoner = await fetchSummonerData(summonerName);
 
       // Fetch ranked stats
-      const rankedStats = await fetchRankedStats(summoner.id);
+      //const rankedStats = await fetchRankedStats(summoner.id);
 
       // Filter for TFT ranked stats
-      const tftStats = rankedStats.find((entry) => entry.queueType === 'RANKED_TFT');
+      //const tftStats = rankedStats.find((entry) => entry.queueType === 'RANKED_TFT');
 
-      if (tftStats) {
+      //if (tftStats) {
         setProfileData({
-          name: summoner.name,
-          rank: `${tftStats.tier} ${tftStats.rank}`,
-          wins: tftStats.wins,
-          losses: tftStats.losses,
+          name: "Game Name: " + summoner.gameName + "\n puuid: " +summoner.puuid,
+          //rank: `${tftStats.tier} ${tftStats.rank}`,
+          //wins: tftStats.wins,
+          //losses: tftStats.losses,
+          rank: 'Unranked',
+          wins: 0,
+          losses: 0,
         });
-      } else {
-        alert('No TFT ranked stats found for this player.');
-      }
+      //} else {
+      //  alert('No TFT ranked stats found for this player.');
+      //}
     } catch (error) {
       alert('Error fetching player data. Please try again.');
     }
