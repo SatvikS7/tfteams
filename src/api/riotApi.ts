@@ -20,18 +20,6 @@ interface RankedStats {
   losses: number;
   queueType: string;
 }
-/*
-export const fetchSummonerData = async (summonerName: string): Promise<SummonerData> => {
-  try {
-    const response = await axios.get<SummonerData>(
-      `${BASE_URL}/account/v1/accounts/by-riot-id/${summonerName}/NA1?api_key=${RIOT_API_KEY}`
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching summoner data:', error);
-    throw error;
-  }
-};*/
 
 export const fetchSummonerData = async (summonerName: string) => {
   try {

@@ -29,22 +29,6 @@ app.get('/api/summoner/:summonerName', async (req, res) => {
   }
 });
 
-app.get('/api/summoner/:summonerName', async (req, res) => {
-  const { summonerName } = req.params;
-
-  try {
-    const response = await axios.get(
-      `https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${summonerName}/NA1?api_key=${RIOT_API_KEY}`,
-      {
-        headers: { 'X-Riot-Token': RIOT_API_KEY },
-      }
-    );
-    res.json(response.data);
-  } catch (error) {
-    res.status(error.response?.status || 500).json({ error: error.message });
-  }
-});
-
 app.listen(PORT, () => {
   console.log(`Proxy server running on http://localhost:${PORT}`);
 });
