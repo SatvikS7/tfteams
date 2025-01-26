@@ -21,9 +21,9 @@ interface RankedStats {
   queueType: string;
 }
 
-export const fetchSummonerData = async (summonerName: string) => {
+export const fetchSummonerData = async (summonerName: string, tagLine: string) => {
   try {
-    const response = await fetch(`http://localhost:5000/api/summoner/${summonerName}`);
+    const response = await fetch(`http://localhost:5000/api/summoner/${summonerName}/${tagLine}`);
     if (!response.ok) {
       throw new Error(`API Error: ${response.status}`);
     }

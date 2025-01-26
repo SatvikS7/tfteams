@@ -13,12 +13,11 @@ app.use(express.json());
 
 const RIOT_API_KEY = process.env.RIOT_API_KEY;
 
-app.get('/api/summoner/:summonerName', async (req, res) => {
-  const { summonerName } = req.params;
-
+app.get('/api/summoner/:summonerName/:tagLine', async (req, res) => {
+  const { summonerName, tagLine } = req.params;
   try {
     const response = await axios.get(
-      `https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${summonerName}/NA1?api_key=${RIOT_API_KEY}`,
+      `https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${summonerName}/${tagLine}`,
       {
         headers: { 'X-Riot-Token': RIOT_API_KEY },
       }

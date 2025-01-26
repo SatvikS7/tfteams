@@ -13,10 +13,10 @@ interface ProfileData {
 const App: React.FC = () => {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
 
-  const handleSearch = async (summonerName: string) => {
+  const handleSearch = async (summonerName: string, tagLine:string) => {
     try {
       // Fetch summoner data
-      const summoner = await fetchSummonerData(summonerName);
+      const summoner = await fetchSummonerData(summonerName, tagLine);
 
       // Fetch ranked stats
       //const rankedStats = await fetchRankedStats(summoner.id);

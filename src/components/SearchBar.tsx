@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 
 interface SearchBarProps {
-  onSearch: (summonerName: string) => void;
+  onSearch: (summonerName: string, tagline: string) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-  const [summonerName, setSummonerName] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const [summonerName, tagline] = inputValue.split('#');
     if (summonerName.trim()) {
-      onSearch(summonerName);
+      onSearch(summonerName.trim(), tagline ? tagline.trim() : '');
     }
   };
 
@@ -19,8 +20,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
       <input
         type="text"
         placeholder="Enter Summoner Name"
-        value={summonerName}
-        onChange={(e) => setSummonerName(e.target.value)}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
         className="search-input"
       />
       <button type="submit" className="search-button">
