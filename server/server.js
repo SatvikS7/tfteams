@@ -13,16 +13,32 @@ app.use(express.json());
 
 const RIOT_API_KEY = process.env.RIOT_API_KEY;
 
+//get summoner name and puuid
 app.get('/api/summoner/:summonerName/:tagLine', async (req, res) => {
   const { summonerName, tagLine } = req.params;
   try {
-    const response = await axios.get(
+    const responsePUUID = await axios.get(
       `https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${summonerName}/${tagLine}`,
       {
         headers: { 'X-Riot-Token': RIOT_API_KEY },
       }
     );
-    res.json(response.data);
+    const responseSumID = await axios.get(
+      `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${responsePUUID.data.puuid}`,
+      {
+        headers: { 'X-Riot-Token': RIOT_API_KEY },
+      }
+    );
+    const responseRank = await axios.get(
+      `https://na1.api.riotgames.com/tft/league/v1/entries/by-summoner/${responseSumID.data.id}`,
+      {
+        headers: { 'X-Riot-Token': RIOT_API_KEY },
+      }
+    );
+
+    const combinedRes = {...responsePUUID.data, ...responseSumID.data, rankDetails: responseRank.data[0]};
+    res.json(combinedRes);
+
   } catch (error) {
     res.status(error.response?.status || 500).json({ error: error.message });
   }

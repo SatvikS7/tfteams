@@ -34,13 +34,13 @@ export const fetchSummonerData = async (summonerName: string, tagLine: string) =
   }
 };
 
-export const fetchRankedStats = async (summonerId: string): Promise<RankedStats[]> => {
-  try {
-    const response = await axios.get<RankedStats[]>(
-      `${BASE_URL}/league/v1/entries/by-summoner/${summonerId}`,
-      { headers: { 'X-Riot-Token': RIOT_API_KEY } }
-    );
-    return response.data;
+export const fetchRankedStats = async (puuid: string): Promise<RankedStats[]> => {
+  try { 
+    const response = await fetch(`http://localhost:5000/api/summoner/${puuid}`);
+    if (!response.ok) {
+      throw new Error(`API Error: ${response.status}`);
+    }
+    return await response.json();
   } catch (error) {
     console.error('Error fetching ranked stats:', error);
     throw error;
