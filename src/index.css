@@ -4,69 +4,111 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #2a2a3b, #1e1e2f);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+/* Centering the app content */
+.app-container {
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
+  padding: 20px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Title Styling */
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(90deg, #a855f7, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+/* Search Bar */
+.search-bar-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.search-bar {
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  border: 2px solid #6b7280;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #3b3b4f, #2a2a3b);
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 16px;
+  background: none;
+  border: none;
+  color: #fff;
+}
+
+.search-bar button {
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #fff;
+  background: linear-gradient(135deg, #9333ea, #7e22ce);
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.search-bar button:hover {
+  background: linear-gradient(135deg, #7e22ce, #6b21a8);
+}
+
+/* Player Profile Container */
+.player-profile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(135deg, #373757, #2a2a3b);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 900px;
+  min-height: 120px;
+  margin-top: 30px;
+}
+
+/* Player Info - Icon + Name */
+.player-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-right: 40px;
+}
+
+.player-info img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  border: 2px solid #a855f7;
+  margin-bottom: 8px;
+}
+
+.player-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  max-width: 180px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.player-stats {
+  margin: auto;
 }

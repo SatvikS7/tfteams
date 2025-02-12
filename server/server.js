@@ -37,6 +37,7 @@ app.get('/api/summoner/:summonerName/:tagLine', async (req, res) => {
     );
 
     const combinedRes = {...responsePUUID.data, ...responseSumID.data, rankDetails: responseRank.data[0]};
+    console.log(combinedRes);
     res.json(combinedRes);
 
   } catch (error) {

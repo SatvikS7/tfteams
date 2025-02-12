@@ -22,4 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-tfteams_v1_vite/.env
+*.env
+*.txt
