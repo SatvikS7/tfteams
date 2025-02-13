@@ -65,4 +65,4 @@ export default tseslint.config({
 5. The website will now be live at the hardcoded port number
 
 ## Current Website Look
-![Current Website](\src\assets\wip.png)
+![Current Website](/src/assets/wip.png)
