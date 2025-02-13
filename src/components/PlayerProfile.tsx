@@ -16,10 +16,19 @@ const PlayerProfile: React.FC<PlayerProfileProps> = ({ profileData }) => {
   const { rank, wins, losses } = profileData;
   
   return (
-    <div className="player-profile">
-      <p className='player-stats'>Rank: {rank}</p>
-      <p className='player-stats'>Wins: {wins}</p>
-      <p className='player-stats'>Losses: {losses}</p>
+    <div className="player-stats-container">
+      <div className="player-stat">
+        <span className="stat-label">Rank:</span>
+        <span className="stat-value">{rank}</span>
+      </div>
+      <div className="player-stat">
+        <span className="stat-label">Wins:</span>
+        <span className="stat-value">{wins}</span>
+      </div>
+      <div className="player-stat">
+        <span className="stat-label">Losses:</span>
+        <span className="stat-value">{losses}</span>
+      </div>
     </div>
   );
 };

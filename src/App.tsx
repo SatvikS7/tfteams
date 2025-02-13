@@ -67,17 +67,15 @@ const App: React.FC = () => {
     <div className="app-container">
       <h1 className="title">TFTeams</h1>
       <SearchBar onSearch={handleSearch} />
-      
       {profileData && (
         <div className="player-profile">
           <div className="player-info">
-            <div className="ranked-icon">
-              <img src={borderURL} alt="Rank Border" className="rank-border" />
+            <div className="ranked-icon-container">
               <PlayerIcon profileIconId={profileIconId} />
+              <img src={borderURL} alt="Rank Border" className="rank-border" />
             </div>
             <h2 className="player-name">{profileName}</h2>
           </div>
-          
           <PlayerProfile profileData={profileData} />
         </div>
       )}
